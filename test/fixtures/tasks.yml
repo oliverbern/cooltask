@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  days: 9.99
+  done: false
+  list_id: 
+
+two:
+  body: MyText
+  days: 9.99
+  done: false
+  list_id: 

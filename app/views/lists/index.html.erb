@@ -1,0 +1,35 @@
+<h1>Listing lists</h1>
+
+<table class="table table-hover">
+
+  <thead>
+    <tr>
+      <th>Name of List</th>
+      <th>Description</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+	
+    <% @lists.each do |list| %>
+      <tr>
+        <td><%= link_to "#{list.title}", list %></td>
+        <td><%= list.description %></td>
+        <td><%= link_to 'Edit List', edit_list_path(list) %></td>
+        <td><%= link_to 'Delete List', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if @lists.count == 0 %>
+
+<%= link_to 'New List', new_list_path %>
+
+<% else %>
+<%= "Need more lists? Go for Premium" %>
+
+<% end %>

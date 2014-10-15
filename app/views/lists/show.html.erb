@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Title:</strong>
+  <%= @list.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @list.description %>
+</p>
+<h2>Current Tasks</h2>
+<div id="tasks">
+        <%= render "tasks/task" %>
+</div>
+
+
+<table class="table table-hover">
+<thead>
+<tr>
+  <th>Task Description</th>
+	<th>Created</th>
+	<th>Deadline</th>
+	<th>Days left</th>
+	<th>Completed?</th>
+	</tr>
+</head>
+
+<tbody>
+
+<% @list.tasks.each do |task| %>
+<tr>
+  <td><%= task.body %></td>
+  <td><%= task.created_at.strftime("%m/%d/%Y - %H:%M") %></td>
+  <td><% @time7 = task.created_at + 6.days %><%= @time7.strftime("%m/%d/%Y - %H:%M") %></td>
+  <td><%= Time.at(@time7.to_i - Time.now.to_i).strftime("%d") %></td>
+	<td><%= link_to "Completed", [@list, task], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you completed this task?' } %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+
+  
+
+
+
+
+<h3>Add New Task </h3>
+<%= form_for [@list, Task.new] do |f| %>
+	<div class="field">
+
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Edit', edit_list_path(@list) %> |
+<%= link_to 'Back', lists_path %>
