@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+	respond_to :html, :js
 	before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
@@ -53,7 +54,11 @@ class TasksController < ApplicationController
     @list = List.find(params[:list_id])
     @task = @list.tasks.find(params[:id])
     @task.destroy
-    redirect_to list_path(@list)
+    
+		
+		respond_with(@task) do |format|
+			format.html { redirect_to list_path(@list) }
+		end
   end
 
   private
