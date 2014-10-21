@@ -29,10 +29,11 @@ class TasksController < ApplicationController
 		@list = List.find(params[:list_id])
 		@task = @list.tasks.create(task_params)
 		@task.days = Time.now
-		redirect_to list_path(@list)
 		
-	
-  end
+		respond_with(@task) do |format|
+			format.html { redirect_to list_path(@list) }
+		end
+	end
 
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json

@@ -1,2 +1,6 @@
-<h1>Welcome#home</h1>
-<p>Find me in app/views/welcome/home.html.erb</p>
+<div class="jumbotron">
+  <h1>Welcome to COOLTASK!</h1>
+  <p>Organise your tasks easily and efficiently today. For Free.</p>
+	<%= link_to "Register Now", new_user_registration_path, class: 'btn btn-primary' %>
+	<p><%= link_to "Already have an account? Login here", new_user_session_path %></p>
+</div>

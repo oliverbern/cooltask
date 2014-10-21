@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+	
+
 
   devise_for :users
   resources :lists do
@@ -12,7 +14,8 @@ Rails.application.routes.draw do
 
   get 'welcome/contact'
 	
-	root to: "welcome#home"
+	root 'welcome#home'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

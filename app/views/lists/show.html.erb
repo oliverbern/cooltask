@@ -1,51 +1,49 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <strong>Title:</strong>
-  <%= @list.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @list.description %>
-</p>
-<h2>Current Tasks</h2>
+
+
+
+
+<h2>Your Tasks</h2>
+
+
+
+
 <div id="tasks">
         <%= render "tasks/task" %>
 </div>
 
 
-<table class="table table-hover">
+<table class="table table-hover" id='tasks'>
 <thead>
 <tr>
+	<th>Completed?</th>
   <th>Task Description</th>
 	<th>Created</th>
 	<th>Deadline</th>
 	<th>Days left</th>
-	<th>Completed?</th>
+	
 	</tr>
 </head>
 
 <tbody>
 
 <% @list.tasks.each do |task| %>
-<tr>
-  <td><%= task.body %></td>
-  <td><%= task.created_at.strftime("%m/%d/%Y - %H:%M") %></td>
-  <td><% @time7 = task.created_at + 6.days %><%= @time7.strftime("%m/%d/%Y - %H:%M") %></td>
-  <td><%= Time.at(@time7.to_i - Time.now.to_i).strftime("%d") %></td>
-	<td><%= link_to "Completed", [@list, task], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you completed this task?' } %></td>
-</tr>
-<% end %>
-</tbody>
-</table>
+<tr id="task-<%= task.id %>">
+	<td><%= link_to "Complete", [@list, task], remote: true, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you completed this task?' } %></td>
 
-  
+  <td><%= task.body %></td>
+  <td><%= task.created_at.strftime("%A, %d/%m") %></td>
+  <td><%= task.deadline.strftime("%d/%m/%Y") %></td>
+  <td><%= task.remaining_time.strftime("%d") %></td> 
+	</tr>
+<% end %>
 
 
 
 
 <h3>Add New Task </h3>
-<%= form_for [@list, Task.new] do |f| %>
+<%= form_for [@list, Task.new], remote:true do |f| %>
 	<div class="field">
 
     <%= f.text_area :body %>
@@ -56,6 +54,13 @@
   </div>
 <% end %>
 
+</tbody>
 
-<%= link_to 'Edit', edit_list_path(@list) %> |
-<%= link_to 'Back', lists_path %>
+
+  
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+var template = "<tr><td><%= @task.body %></td><td><%= @task.created_at.strftime("%m/%d/%Y - %H:%M") %></td><td><%= @task.deadline %></td></tr>";
+
+$("#tasks tbody").append(template);
