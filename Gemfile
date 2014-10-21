@@ -15,6 +15,7 @@ gem 'devise'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem "pundit"
+gem 'figaro', '1.0'
 
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'whenever', :require => false
