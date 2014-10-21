@@ -6,12 +6,12 @@
 
 <h2>Your Tasks</h2>
 
-
-
-
 <div id="tasks">
         <%= render "tasks/task" %>
 </div>
+
+
+
 
 
 <table class="table table-hover" id='tasks'>
@@ -29,18 +29,8 @@
 <tbody>
 
 <% @list.tasks.each do |task| %>
-<tr id="task-<%= task.id %>">
-	<td><%= link_to "Complete", [@list, task], remote: true, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you completed this task?' } %></td>
-
-  <td><%= task.body %></td>
-  <td><%= task.created_at.strftime("%A, %d/%m") %></td>
-  <td><%= task.deadline.strftime("%d/%m/%Y") %></td>
-  <td><%= task.remaining_time.strftime("%d") %></td> 
-	</tr>
+<%= render "tasks/taskrow", task: task %>
 <% end %>
-
-
-
 
 <h3>Add New Task </h3>
 <%= form_for [@list, Task.new], remote:true do |f| %>
@@ -53,6 +43,9 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+
 
 </tbody>
 
