@@ -1,6 +1,16 @@
+<% if user_signed_in? %>
+<h2>What would you like to do today?</h2>
+	<ul><%= link_to "Show me my Tasks", lists_path, class: 'btn btn-primary' %></ul>
+	<ul><%= link_to "Edit my profile", edit_user_registration_path, class: 'btn btn-primary' %></ul>
+	<ul><%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: 'btn btn-danger' %></ul>
+
+<% else %>
+
 <div class="jumbotron">
   <h1>Welcome to COOLTASK!</h1>
-  <p>Organise your tasks easily and efficiently today. For Free.</p>
-	<%= link_to "Register Now", new_user_registration_path, class: 'btn btn-primary' %>
+  <p>Organise your tasks easily and efficiently today. For Free.</p></br>
+	<%= link_to "Register Now", new_user_registration_path, class: 'btn btn-primary' %></br>
+	<p></p>
 	<p><%= link_to "Already have an account? Login here", new_user_session_path %></p>
 </div>
+<% end %>
