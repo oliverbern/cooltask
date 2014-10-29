@@ -1,60 +1,45 @@
-<p id="notice"><%= notice %></p>
-
-
-
-
 
 <h2>Your Tasks</h2>
 
 <div id="tasks">
-        <%= render "tasks/task" %>
+  <%= render "tasks/task" %>
 </div>
-
-
-
 
 <div class="row">
-<div class="col-md-6">
-<table class="table table-hover" id='tasks'>
-<thead>
-<tr>
-	<th>Completed?</th>
-  <th>Task Description</th>
-	<th>Created</th>
-	<th>Deadline</th>
-	<th>Days left</th>
-	
-	</tr>
-</thead>
-</div>
-</div>
+  <div class="col-md-6">
+    <table class="table table-hover" id='tasks'>
+      <thead>
+        <tr>
+          <th>Completed?</th>
+          <th>Task Description</th>
+          <th>Created</th>
+          <th>Deadline</th>
+          <th>Days left</th>
 
-<tbody>
+        </tr>
+      </thead>
+      <tbody>
 
-<% @list.tasks.each do |task| %>
-<%= render "tasks/taskrow", task: task %>
-<% end %>
+      <% @list.tasks.each do |task| %>
+        <%= render "tasks/taskrow", task: task %>
+    <% end %>
 
-<h3>Add New Task </h3>
-<%= form_for [@list, Task.new], remote:true do |f| %>
-	<div class="form-group">
-    <%= f.text_area :body %>
+      <tr>
+        <td colspan="5">
+          <%= form_for [@list, Task.new], remote:true do |f| %>
+            <div class="form-group">
+            <%= f.text_area :body %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Submit", class: "btn btn-success btn-primary" %>
+          </div>
+        <% end %>
+        </td>
+      </tr>
+
+
+      </tbody>
+    </table>
   </div>
-  <div class="actions">
-    <%= f.submit "Submit", class: "btn btn-success btn-primary" %>
-  </div>
-<% end %>
-
-
-
-
-</tbody>
-
-
-  
-
-
-
-
-
-
+</div>
