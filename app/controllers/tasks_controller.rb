@@ -26,12 +26,13 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
+		
 		@list = List.find(params[:list_id])
 		@task = @list.tasks.create(task_params)
 		@task.days = Time.now
 		
 		respond_with(@task) do |format|
-			format.html { redirect_to list_path(@list) }
+			format.html { redirect_to list_tasks_path(@list) }
 		end
 	end
 

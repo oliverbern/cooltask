@@ -19,7 +19,6 @@ gem 'figaro', '1.0'
 
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'whenever', :require => false
-gem "jazz_hands", group: :development
 
 group :production do
   gem 'pg'
@@ -28,4 +27,9 @@ end
 
 group :development do
   gem 'sqlite3'
+	gem "jazz_hands"
+end
+
+group :test do
+	gem "jazz_hands"
 end

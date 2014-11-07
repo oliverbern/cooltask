@@ -11,6 +11,7 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
+		@lists = List.where(:user_id => current_user.id)
   end
 
   # GET /lists/new
@@ -27,10 +28,9 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 		@list.user_id = current_user.id
-		
-
-    respond_to do |format|
-      if @list.save
+		respond_to do |format|
+     
+			if @list.save
         format.html { redirect_to @list, notice: 'List was successfully created.' }
         format.json { render :show, status: :created, location: @list }
       else

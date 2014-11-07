@@ -4,10 +4,10 @@ one:
   body: MyText
   days: 9.99
   done: false
-  list_id: 
+  list: one
 
 two:
   body: MyText
   days: 9.99
   done: false
-  list_id: 
+  list: two 
